@@ -4,7 +4,7 @@
   "description": "Backendserver for Citpit",
   "main": "index.js",
   "scripts": {
-    "run": "nodemon src/index.js"
+    "start": "nodemon ./src/index.js"
   },
   "author": "Alexander Hierl <Aleeex.bh@gmail.com>",
   "license": "MIT",

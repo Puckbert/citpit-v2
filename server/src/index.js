@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const app = express();
 const PORT = '5000';
 
-const users = require('../database/usersModel');
+const users = require('../database/usersModel').default;
 
 app.use(morgan('tiny'));
 app.use(cors());
