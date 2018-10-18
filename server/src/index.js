@@ -24,6 +24,12 @@ app.get('/users', (req, res) => {
     })
 })
 
+app.get('/picture', (req, res) => {
+    res.json({
+        message: "Bilder ausgabe"
+    });
+})
+
 app.listen(PORT, () => {
     console.log('Listening on Port: '+PORT);
 });
