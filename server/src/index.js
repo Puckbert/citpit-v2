@@ -3,23 +3,22 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const Joi = require('joi');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const PORT = '5000';
-const middlewares = require('./auth/middlewares');
-// const auth = require('./auth/index.js');
-// const auth = require('./auth/index');
-const auth = require('./auth');
-const notes = require('./api/notes');
 
-const users = require('../database/usersModel');
+const db = require('../database/connection');
+const users = db.get('users');
 
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(middlewares.checkTokenSetUser);
-app.use('/auth', auth);
-app.use('/api/v1/notes', middlewares.isLoggedIn, notes);
+
+const schema = Joi.object().keys({
+    email: Joi.string().email().required(),
+    passwort: Joi.string().required()
+});
 
 app.get('/', (req, res) => {
     res.json({
@@ -27,27 +26,44 @@ app.get('/', (req, res) => {
     });
 });
 
+// app.get('/drop', (req, res) => {
+//     users.dropIndexes();
+//     res.json({
+//         message: "Success"
+//     });
+// });
+
 app.get('/users', (req, res) => {
-    users.getAll().then((users) => {
+    users.find().then(users => {
         res.json(users);
     })
 });
 
-app.get('/loadPictures', (req, res) => {
-    res.json({
-        message: "API for reloading both images"
-    });
-});
-
 app.post('/signup', (req, res, next) => {
     const result = Joi.validate(req.body, schema);
-
+    
     if (result.error === null){
-        users.find({
+        users.findOne({
             email: req.body.email
         }).then(user => {
-            res.json({ user });
-        })
+            if(user){
+                //Error Message es existiert bereits ein Nutzer
+                const error = new Error("Diese Email-Adress existiert bereits");
+                next(error);
+            } else {
+                bcrypt.hash(req.body.passwort.trim(), 12).then(hashedPasswort => {
+                    
+                    const newUser = {
+                        email: req.body.email,
+                        passwort: hashedPasswort
+                    };
+
+                    users.insert(newUser).then(insertedUser => {
+                        res.json(insertedUser);
+                    })
+                });
+            }
+        });
     } else {
         next(result.error);
     }
