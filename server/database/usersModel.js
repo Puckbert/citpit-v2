@@ -1,15 +1,15 @@
 const db = require('./connection');
-
 const users = db.get('users');
 
 function getAll() {
-    return users.find();
+    return users.find();    
 };
 
-function login(_email, passwort) {
-    users.insert({ email: _email, passwort });
+function login(_email, _passwort) {
+    users.insert({ email: _email, passwort: _passwort });
 };
 
 module.exports = {
-    getAll
+    getAll,
+    login
 };
