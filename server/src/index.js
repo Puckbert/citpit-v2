@@ -22,13 +22,18 @@ app.get('/users', (req, res) => {
     users.getAll().then((users) => {
         res.json(users);
     })
-})
+});
 
-app.get('/picture', (req, res) => {
+app.get('/loadPictures', (req, res) => {
     res.json({
-        message: "Bilder ausgabe"
+        message: "AP for reloading both images"
     });
-})
+});
+
+app.post('/login', (req, res) => {
+    
+});
+
 
 app.listen(PORT, () => {
     console.log('Listening on Port: '+PORT);

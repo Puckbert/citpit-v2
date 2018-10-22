@@ -6,6 +6,10 @@ function getAll() {
     return users.find();
 };
 
+function login(_email, passwort) {
+    users.insert({ email: _email, passwort });
+};
+
 module.exports = {
     getAll
 };
