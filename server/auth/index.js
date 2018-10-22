@@ -16,13 +16,14 @@ const schema = Joi.object().keys({
 function createTokenSendResponse(user, res, next) {
     const payload = {
       _id: user._id,
-      username: user.username
+      email: user.email
     };
   
     jwt.sign(payload, process.env.TOKEN_SECRET, {
       expiresIn: '1d'
     }, (err, token) => {
       if (err) {
+        console.log("4. ");
         respondError422(res, next);
       } else {
         res.json({
@@ -83,14 +84,18 @@ router.post('/login', (req, res, next) => {
                     if(result){
                         createTokenSendResponse(user, res, next)
                     } else {
+                        console.log("1. ");
                         respondError422(res, next);
+                        
                     }
                 });
             } else {
+                console.log("2. ");
                 respondError422(res, next);
             }
         })
     } else {
+        console.log("3. ");
         respondError422(res, next);
     }
 });

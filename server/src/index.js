@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+require('dotenv').config();
 
 const app = express();
 const PORT = '5000';
@@ -42,13 +43,13 @@ function notFound(req, res, next) {
     next(error);
   }
   
-  function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, next) {
     res.status(res.statusCode || 500);
     res.json({
-      message: err.message,
-      stack: err.stack
+        message: err.message,
+        stack: err.stack
     });
-  }
+}
 
 app.use(errorHandler);
 app.use(notFound);
