@@ -20,16 +20,9 @@ app.get('/', (req, res) => {
     });
 });
 
-
 const auth = require('../auth');
 
 app.use('/auth', auth);
-// app.get('/drop', (req, res) => {
-//     users.dropIndexes();
-//     res.json({
-//         message: "Success"
-//     });
-// });
 
 app.get('/users', (req, res) => {
     users.find().then(users => {
@@ -57,15 +50,16 @@ app.get('/randomImage', (req, res) => {
     });
 });
 
+// Algorithmus einfügen!
 function calculateNewBewertung(bewertung){
     return bewertung+5;
 };
 
 app.post('/updateBewertung', (req, res) => {
     users.findOne( { email:req.body.email }, { _id:0, bewertung:1 }).then(bew => {
-        users.update( { email:req.body.email }, { $set: {bewertung: calculateNewBewertung(bew.bewertung)  } });
+        users.update( { email:req.body.email }, { $set: {bewertung: calculateNewBewertung(bew.bewertung) } });
         res.json(bew);
-    });
+    }); 
 });
 
 // app.get('/removeAllUsers', (req, res) => {
