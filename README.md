@@ -1,8 +1,8 @@
 # citpit-v2
 
 ## Server ##
-* [] Signup
-* [] Login
+* [x] Signup
+* [x] Login
 * [] Storing images
 * [] show Random Image
 * [] Neue Wertung berechnen
