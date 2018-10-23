@@ -17,11 +17,19 @@ const router = express.Router();
 * evtl. Freunde
 * evtl. Chat
 */
+// Final Schema ->
+// const schema = Joi.object().keys({
+//     email: Joi.string().email().required(),
+//     passwort: Joi.string().required(),
+//     plz: Joi.string().numeric().max(5).required(),
+//     schule: Joi.string().required(),
+//     imageURL: Joi.string().uri().required()
+// });
+
+//Test schema ->
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
-    plz: Joi.string().numeric().max(5).required(),
-    schule: Joi.string().required(),
     imageURL: Joi.string().uri().required()
 });
 
