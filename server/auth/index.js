@@ -10,7 +10,8 @@ const router = express.Router();
 
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
-    passwort: Joi.string().required()
+    passwort: Joi.string().required(),
+    plz: Joi.string().numeric().max(5).required()
 });
 
 function createTokenSendResponse(user, res, next) {
@@ -34,6 +35,7 @@ function createTokenSendResponse(user, res, next) {
   }
 
 ///auth/signup
+// req.body muss exakt alles beinhalten, was in die DB eingefügt wird
 router.post('/signup', (req, res, next) => {
     const result = Joi.validate(req.body, schema);
     
@@ -50,7 +52,10 @@ router.post('/signup', (req, res, next) => {
                     
                     const newUser = {
                         email: req.body.email,
-                        passwort: hashedPasswort
+                        passwort: hashedPasswort,
+                        plz: req.body.plz,
+                        schule: req.body.schule,
+                        imageURL: req.body.imageURL
                     };
 
                     users.insert(newUser).then(insertedUser => {
