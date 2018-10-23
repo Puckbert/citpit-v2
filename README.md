@@ -4,5 +4,5 @@
 * [x] Signup
 * [x] Login
 * [] Storing images
-* [] show Random Image
-* [] Neue Wertung berechnen
+* [x] Show Random Image
+* [x] Neue Wertung berechnen

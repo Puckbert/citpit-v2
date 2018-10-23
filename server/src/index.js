@@ -57,6 +57,17 @@ app.get('/randomImage', (req, res) => {
     });
 });
 
+function calculateNewBewertung(bewertung){
+    return bewertung+5;
+};
+
+app.post('/updateBewertung', (req, res) => {
+    users.findOne( { email:req.body.email }, { _id:0, bewertung:1 }).then(bew => {
+        users.update( { email:req.body.email }, { $set: {bewertung: calculateNewBewertung(bew.bewertung)  } });
+        res.json(bew);
+    });
+});
+
 // app.get('/removeAllUsers', (req, res) => {
 //     users.remove().then(erg => {
 //         res.json(erg);

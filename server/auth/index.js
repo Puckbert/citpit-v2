@@ -30,7 +30,8 @@ const router = express.Router();
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
-    imageURL: Joi.string().uri().required()
+    imageURL: Joi.string().uri().required(),
+    bewertung: Joi.number().default(10).required()
 });
 
 function createTokenSendResponse(user, res, next) {
@@ -74,7 +75,8 @@ router.post('/signup', (req, res, next) => {
                         passwort: hashedPasswort,
                         plz: req.body.plz,
                         schule: req.body.schule,
-                        imageURL: req.body.imageURL
+                        imageURL: req.body.imageURL,
+                        bewertung: req.body.bewertung
                     };
 
                     users.insert(newUser).then(insertedUser => {
