@@ -17,42 +17,34 @@ const router = express.Router();
 * evtl. Freunde
 * evtl. Chat
 */
-// Final Schema ->
-// const schema = Joi.object().keys({
-//     email: Joi.string().email().required(),
-//     passwort: Joi.string().required(),
-//     plz: Joi.string().numeric().max(5).required(),
-//     schule: Joi.string().required(),
-//     imageURL: Joi.string().uri().required()
-// });
-
-//Test schema ->
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
+    plz: Joi.string().max(5).numeric().required(),
+    schule: Joi.string().required(),
     imageURL: Joi.string().uri().required(),
     bewertung: Joi.number().default(10).required()
 });
 
 function createTokenSendResponse(user, res, next) {
-    const payload = {
-      _id: user._id,
-      email: user.email
-    };
-  
-    jwt.sign(payload, process.env.TOKEN_SECRET, {
-      expiresIn: '1d'
-    }, (err, token) => {
-      if (err) {
-        console.log("4. ");
-        respondError422(res, next);
-      } else {
-        res.json({
-          token
-        });
-      }
-    });
-  }
+   const payload = {
+     _id: user._id,
+     email: user.email
+   };
+ 
+   jwt.sign(payload, process.env.TOKEN_SECRET, {
+     expiresIn: '1d'
+   }, (err, token) => {
+     if (err) {
+       console.log("4. ");
+       respondError422(res, next);
+     } else {
+       res.json({
+         token
+       });
+     }
+   });
+}
 
 ///auth/signup
 // req.body muss exakt alles beinhalten, was in die DB eingefügt wird
