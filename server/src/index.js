@@ -52,12 +52,8 @@ function errorHandler(err, req, res, next) {
 }
 
 app.get('/randomImage', (req, res) => {
-    // res.json({
-    //     message: 'Generate Random Image'
-    // });
-
-    users.findOne({},{ imageURL: 1, _id:0 }).then(url => {
-        res.json(url);
+    users.aggregate([{$project: {imageURL:1, _id:0}},{ $sample: {size:1}}]).then(resp => {
+        res.json(resp);
     });
 });
 
