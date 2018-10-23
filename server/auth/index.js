@@ -8,10 +8,21 @@ const users = db.get('users');
 
 const router = express.Router();
 
+/*
+* Email
+* Passwort
+* PLZ
+* Schule
+* imageURL
+* evtl. Freunde
+* evtl. Chat
+*/
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
-    plz: Joi.string().numeric().max(5).required()
+    plz: Joi.string().numeric().max(5).required(),
+    schule: Joi.string().required(),
+    imageURL: Joi.string().uri().required()
 });
 
 function createTokenSendResponse(user, res, next) {
