@@ -20,7 +20,7 @@ const router = express.Router();
 const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
-    plz: Joi.string().max(5).numeric().required(),
+    plz: Joi.string().max(5).regex(/^[0-9]+$/).required(),
     schule: Joi.string().required(),
     imageURL: Joi.string().uri().required(),
     bewertung: Joi.number().default(10).required()

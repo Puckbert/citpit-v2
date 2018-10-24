@@ -45,7 +45,7 @@ function errorHandler(err, req, res, next) {
 }
 
 app.get('/randomImage', (req, res) => {
-    users.aggregate([{$project: {imageURL:1, _id:0}},{ $sample: {size:1}}]).then(resp => {
+    users.aggregate([{$project: {imageURL:1, _id:0}},{ $sample: { size:2 }}]).then(resp => {
         res.json(resp);
     });
 });
