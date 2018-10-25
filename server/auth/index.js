@@ -103,8 +103,7 @@ router.post('/login', (req, res, next) => {
                         createTokenSendResponse(user, res, next)
                     } else {
                         console.log("1. ");
-                        respondError422(res, next);
-                        
+                        respondError422(res, next);   
                     }
                 });
             } else {
