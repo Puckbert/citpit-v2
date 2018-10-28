@@ -42,7 +42,6 @@ import { mapState, mapMutations } from 'vuex'
       },
       clear: () => {
         console.log('CLEAR FORM');
-        
       }
     },
     computed: { 

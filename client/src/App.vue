@@ -10,7 +10,7 @@
             <v-list-tile-title >Login</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile v-if="isLoggedIn" @click="test">
+        <v-list-tile v-if="isLoggedIn" :to="{path: '/profile'}">
           <v-list-tile-action>
             <v-icon>account_box</v-icon>
           </v-list-tile-action>
@@ -19,7 +19,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile v-if="isLoggedIn" @click="test">
+        <v-list-tile v-if="isLoggedIn" :to="{path: '/app'}">
           <v-list-tile-action>
             <v-icon>dashboard</v-icon>
           </v-list-tile-action>
@@ -28,7 +28,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile v-if="isLoggedIn" @click="test">
+        <v-list-tile v-if="isLoggedIn" :to="{path: '/settings'}">
           <v-list-tile-action>
             <v-icon>settings</v-icon>
           </v-list-tile-action>
@@ -36,7 +36,7 @@
             <v-list-tile-title>Settings</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile v-if="isLoggedIn" @click="test">
+        <v-list-tile v-if="isLoggedIn" @click="logout" :to="{path: '/login'}">
           <v-list-tile-action>
             <v-icon color="red">exit_to_app</v-icon>
           </v-list-tile-action>
@@ -71,7 +71,7 @@
 
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
 
   data: () => ({
@@ -79,13 +79,18 @@ export default {
   }),
   computed:{ ...mapState([
     'name',
-    'isLoggedIn'
+    'isLoggedIn',
   ])
   } ,
   methods: {
-    
+    ...mapMutations([
+      'SET_LOGGED_IN'
+    ]),
     test: () => {
       console.log('Clickkkkkk!');
+    },
+    logout: function() {
+      this.SET_LOGGED_IN(false);  
     }
   },
 

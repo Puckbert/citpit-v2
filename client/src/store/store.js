@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     name: 'PicIt',
     isLoggedIn: false,
+    drawer: null
   },
   mutations: {
     SET_LOGGED_IN: (state, payload) => {
