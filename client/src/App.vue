@@ -2,7 +2,15 @@
   <v-app id="app" dark>
     <v-navigation-drawer v-model="drawer" clipped fixed app>
       <v-list dense>
-        <v-list-tile @click="test">
+        <v-list-tile v-if="!isLoggedIn" :to="{path: '/login'}">
+          <v-list-tile-action>
+            <v-icon>forward</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title >Login</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="isLoggedIn" @click="test">
           <v-list-tile-action>
             <v-icon>account_box</v-icon>
           </v-list-tile-action>
@@ -11,7 +19,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile @click="test">
+        <v-list-tile v-if="isLoggedIn" @click="test">
           <v-list-tile-action>
             <v-icon>dashboard</v-icon>
           </v-list-tile-action>
@@ -20,7 +28,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile @click="test">
+        <v-list-tile v-if="isLoggedIn" @click="test">
           <v-list-tile-action>
             <v-icon>settings</v-icon>
           </v-list-tile-action>
@@ -28,7 +36,7 @@
             <v-list-tile-title>Settings</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="test">
+        <v-list-tile v-if="isLoggedIn" @click="test">
           <v-list-tile-action>
             <v-icon color="red">exit_to_app</v-icon>
           </v-list-tile-action>
@@ -38,8 +46,8 @@
         </v-list-tile>
         
       </v-list>
-      <v-subheader class="mt-3 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
-      <v-list>
+      <v-subheader v-if="isLoggedIn" class="mt-3 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
+      <v-list v-if="isLoggedIn">
         <v-list-tile v-for="item in items2" :key="item.text" avatar @click="test">
           <v-list-tile-avatar>
             <img :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`" alt="">
@@ -53,34 +61,7 @@
       <v-toolbar-title>{{ name }}</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center>
-          <v-flex shrink>
-            <v-card class="elevation-10 ma-5">
-              <v-img @click="test" height="300px" width="300px" src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75">
-                <v-container fill-height fluid>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox>
-                      <span class="headline">Top 10 Australian beaches</span>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-img>
-            </v-card>
-            <v-card class="elevation-10 ma-5">
-              <v-img @click="test" height="300px" width="300px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" aspect-ratio="2.75">
-                <v-container fill-height fluid>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox>
-                      <span class="headline">Top 10 Australian beaches</span>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-img>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <router-view/>
     </v-content>
     <v-footer app fixed>
       <span>&copy; 2017</span>
@@ -90,17 +71,24 @@
 
 
 <script>
+import { mapState } from 'vuex'
 export default {
- 
+
   data: () => ({
     drawer: null,
-    name: "App",
   }),
+  computed:{ ...mapState([
+    'name',
+    'isLoggedIn'
+  ])
+  } ,
   methods: {
+    
     test: () => {
       console.log('Clickkkkkk!');
     }
-  } 
+  },
+
 };
 </script>
 
