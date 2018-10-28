@@ -2,7 +2,7 @@
   <v-app id="app" dark>
     <v-navigation-drawer v-model="drawer" clipped fixed app>
       <v-list dense>
-        <v-list-tile @click="">
+        <v-list-tile @click="test">
           <v-list-tile-action>
             <v-icon>account_box</v-icon>
           </v-list-tile-action>
@@ -11,7 +11,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile @click="">
+        <v-list-tile @click="test">
           <v-list-tile-action>
             <v-icon>dashboard</v-icon>
           </v-list-tile-action>
@@ -20,7 +20,7 @@
           </v-list-tile-content>
         </v-list-tile>
         <!-- Implementiere On Click -->
-        <v-list-tile @click="">
+        <v-list-tile @click="test">
           <v-list-tile-action>
             <v-icon>settings</v-icon>
           </v-list-tile-action>
@@ -28,7 +28,7 @@
             <v-list-tile-title>Settings</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="">
+        <v-list-tile @click="test">
           <v-list-tile-action>
             <v-icon color="red">exit_to_app</v-icon>
           </v-list-tile-action>
@@ -40,7 +40,7 @@
       </v-list>
       <v-subheader class="mt-3 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
       <v-list>
-        <v-list-tile v-for="item in items2" :key="item.text" avatar @click="">
+        <v-list-tile v-for="item in items2" :key="item.text" avatar @click="test">
           <v-list-tile-avatar>
             <img :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`" alt="">
           </v-list-tile-avatar>
