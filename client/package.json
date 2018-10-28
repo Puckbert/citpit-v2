@@ -13,7 +13,8 @@
     "vue": "^2.5.2",
     "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.1",
-    "vuecidity": "^1.0.7"
+    "vuecidity": "^1.0.7",
+    "vuetify": "^1.3.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
