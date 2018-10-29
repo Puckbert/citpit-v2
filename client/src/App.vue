@@ -1,13 +1,13 @@
 <template>
   <v-app id="app" dark>
-    <v-navigation-drawer v-model="drawer" clipped fixed app>
+    <v-navigation-drawer v-model="drawer" clipped fixed app disable-route-watcher>
       <v-list dense>
         <v-list-tile v-if="!isLoggedIn" :to="{path: '/login'}">
           <v-list-tile-action>
             <v-icon>forward</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title >Login</v-list-tile-title>
+            <v-list-tile-title class="nav-drawer-link">Login</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile v-if="isLoggedIn" :to="{path: '/profile'}">
@@ -44,7 +44,7 @@
             <v-list-tile-title>Logout</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        
+
       </v-list>
       <v-subheader v-if="isLoggedIn" class="mt-3 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
       <v-list v-if="isLoggedIn">
@@ -61,7 +61,7 @@
       <v-toolbar-title>{{ name }}</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
     <v-footer app fixed>
       <span>&copy; 2017</span>
@@ -98,14 +98,12 @@ export default {
 </script>
 
 <style>
-#app {
-  margin: 0 auto;
-  text-align: center;
+.nav-drawer-link{
+  text-decoration: none;
+  color: red;
+}
+.nav-drawer-link:hover{
+  text-decoration: none;
 }
 
-.topBar {
-  background: red;
-  width: 100%;
-  margin: 0 0 0 0;
-}
 </style>
