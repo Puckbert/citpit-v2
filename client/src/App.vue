@@ -3,7 +3,7 @@
     <v-app id="inspire" dark>
       <v-navigation-drawer v-model="drawer" clipped fixed app>
         <v-list dense>
-          <v-list-tile v-if="!isLoggedIn " class="white--text" active-class="red--background" :to="{ path: '/login' }">
+          <v-list-tile v-if="!isLoggedIn" class="white--text" active-class="red--background" :to="{ path: '/login' }">
             <v-list-tile-action>
               <v-icon>forward</v-icon>
             </v-list-tile-action>
