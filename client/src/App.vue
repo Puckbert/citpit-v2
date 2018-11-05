@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <v-app id="inspire" dark>
+    <v-app id="inspire">
       <v-navigation-drawer v-model="drawer" clipped fixed app>
         <v-list dense>
-          <v-list-tile v-if="!isLoggedIn" class="white--text" active-class="red--background" :to="{ path: '/login' }">
+          <v-list-tile v-if="!isLoggedIn" :to="{ path: '/login' }">
             <v-list-tile-action>
               <v-icon>forward</v-icon>
             </v-list-tile-action>
@@ -61,7 +61,7 @@
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>{{ name }}</v-toolbar-title>
       </v-toolbar>
-      <v-content>
+      <v-content elevation-10>
         <router-view />
       </v-content>
       <v-footer app fixed>
@@ -74,6 +74,8 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+
+
 export default {
 
   data: () => ({
@@ -101,8 +103,8 @@ export default {
 
 <style>
 .v-list-tile-link-active{
-  background: whitesmoke;
-  color: black;
+  background: black;
+  color: blue;
 }
 
 </style>
