@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <v-content class="pa-0">
+  <div id="app" mt-1>
+    <v-content class="pa-0 elevation-10">
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink justify-center>

@@ -59,7 +59,8 @@
       </v-navigation-drawer>
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>{{ name }}</v-toolbar-title>
+        <v-toolbar-title>ABCDEFG
+        </v-toolbar-title>
       </v-toolbar>
       <v-content elevation-10>
         <router-view />
@@ -102,9 +103,9 @@ export default {
 </script>
 
 <style>
-.v-list-tile-link-active{
+/* .v-list-tile-link-active{
   background: black;
   color: blue;
-}
+} */
 
 </style>
