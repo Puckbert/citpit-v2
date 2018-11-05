@@ -17,13 +17,18 @@ const router = express.Router();
 * evtl. Freunde
 * evtl. Chat
 */
-const schema = Joi.object().keys({
+const schemaSignup = Joi.object().keys({
     email: Joi.string().email().required(),
     passwort: Joi.string().required(),
     plz: Joi.string().max(5).regex(/^[0-9]+$/).required(),
     schule: Joi.string().required(),
     imageURL: Joi.string().uri().required(),
     bewertung: Joi.number().default(10).required()
+});
+
+const schemaLogin = Joi.object().keys({
+    email: Joi.string().email().required(),
+    passwort: Joi.string().required()
 });
 
 function createTokenSendResponse(user, res, next) {
@@ -39,8 +44,9 @@ function createTokenSendResponse(user, res, next) {
        console.log("4. ");
        respondError422(res, next);
      } else {
+        user.token = token,
        res.json({
-         token
+         user
        });
      }
    });
@@ -49,7 +55,7 @@ function createTokenSendResponse(user, res, next) {
 ///auth/signup
 // req.body muss exakt alles beinhalten, was in die DB eingefügt wird
 router.post('/signup', (req, res, next) => {
-    const result = Joi.validate(req.body, schema);
+    const result = Joi.validate(req.body, schemaSignup);
     
     if (result.error === null){
         users.findOne({
@@ -89,18 +95,20 @@ function respondError422(res, next) {
   }
 
 router.post('/login', (req, res, next) => {
-    const result = Joi.validate(req.body, schema);
-
+    const result = Joi.validate(req.body, schemaLogin);
+    console.log(req.body);
+    
     if(result.error === null){
         users.findOne({
             email: req.body.email,
         }).then(user => {
+            
             if(user){
                 bcrypt
                 .compare(req.body.passwort, user.passwort)
                 .then((result) => {
                     if(result){
-                        createTokenSendResponse(user, res, next)
+                        createTokenSendResponse(user, res, next)                        
                     } else {
                         console.log("1. ");
                         respondError422(res, next);   

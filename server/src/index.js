@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 require('dotenv').config();
+const volleyball = require('volleyball');
 
 const app = express();
 const PORT = '5000';
@@ -13,7 +14,7 @@ const users = db.get('users');
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(volleyball);
 app.get('/', (req, res) => {
     res.json({
         message: 'Hello'

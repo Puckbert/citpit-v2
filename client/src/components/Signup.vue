@@ -1,20 +1,28 @@
 <template>
   <div id="Signup">
-    <v-content class="pa-5">
-      <v-form ref="form" lazy-validation>
-        <h3>Signup</h3>
-        <v-text-field class="ma-2" label="E-Mail" required></v-text-field>
-        <v-text-field class="ma-2" label="Passwort" required></v-text-field>
-        <v-select class="ma-2" :items="schools" :rules="[v => !!v || 'Item is required']" label="Schule" required></v-select>
-        <v-checkbox :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?"
-          required></v-checkbox>
-
-        <v-btn @click="login">
-          submit
-        </v-btn>
-        <v-btn @click="clear">clear</v-btn>
-      </v-form>
-    </v-content>
+    <v-container elevation-10 mt-5>
+      <v-layout row wrap>
+        <v-flex xs12 sm6 offset-sm3>
+          <h1 class="font-weight-thin display-4">Sign In</h1>
+        </v-flex>
+        <v-flex xs12 sm6 offset-sm3 mt-3>
+          <form>
+            <v-layout column>
+              <v-flex>
+                <v-text-field label="Email" solo></v-text-field>
+              </v-flex>
+              <v-flex>
+                <v-text-field name="password" label="Password" id="password" type="password" solo required></v-text-field>
+              </v-flex>
+              <v-flex class="text-xs-center" @click="login">
+                <v-btn color="primary" type="submit" to="/app">Sign In</v-btn>
+                <v-btn color="light-blue lighten-5" type="submit" to="/signup">Sign Up</v-btn>
+              </v-flex>
+            </v-layout>
+          </form>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 

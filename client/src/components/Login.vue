@@ -1,21 +1,24 @@
 <template>
   <div id="Login">
-    <v-container elevation-10 mt-4>
+    <v-container elevation-10 mt-5>
       <v-layout row wrap>
-        <v-flex xs12 class="text-xs-center" >
-          <h1>Sign In</h1>
+        <v-flex xs12>
+          <v-layout align-content-center justify-center>
+             <h3 class="display-3">Sign In</h3>
+          </v-layout>
         </v-flex>
         <v-flex xs12 sm6 offset-sm3 mt-3>
           <form>
             <v-layout column>
               <v-flex>
-                <v-text-field name="email" label="Email" id="email" type="email" solo required></v-text-field>
+                <v-text-field label="Email" id="email" solo></v-text-field>
               </v-flex>
               <v-flex>
-                <v-text-field name="password" label="Password" id="password" type="password" solo required></v-text-field>
-              </v-flex> 
-              <v-flex class="text-xs-center" mt-5 @click="login">
-                <v-btn color="primary" type="submit" to="/app">Sign In</v-btn>
+                <v-text-field name="password" label="Password" id="passwort" type="password" solo required></v-text-field>
+              </v-flex>
+              <v-flex class="text-xs-center" @click="login">
+                <v-btn color="primary" type="submit">Sign In</v-btn>
+                <v-btn color="light-blue lighten-5" type="submit" to="/signup">Sign Up</v-btn>
               </v-flex>
             </v-layout>
           </form>
@@ -38,42 +41,50 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import {
+  mapState,
+  mapMutations
+} from 'vuex'
 
-const LOGIN_URL = 'http://localhost:5000/signup'
+const LOGIN_URL = 'http://localhost:5000/auth/login'
 
-  export default {
-    data() {
-      return {
-        title: 'Login',
-      }
-    },
-    methods: {
-      ...mapMutations([
-        'SET_LOGGED_IN'
-      ]),
-      login: function() {
-        this.SET_LOGGED_IN(true);
-        router.push({ path:'/app'})
-        
-      },
-      clear: () => {
-        console.log('CLEAR FORM');
-      },
-      onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      },
-    },
-    computed: { 
-      ...mapState([
-        'isLoggedIn'
-      ])
+export default {
+  data() {
+    return {
+      title: 'Login',
     }
+  },
+  methods: {
+    ...mapMutations([
+      'SET_LOGGED_IN'
+    ]),
+
+    login() {
+      console.log(email.value);
+      
+
+    },
+
+    clear: () => {
+      console.log(password.value);
+    },
+
+    onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    },
+  },
+  computed: {
+    ...mapState([
+      'isLoggedIn',
+      'user'
+    ])
   }
+
+}
 </script>
 
 <style>
