@@ -1,6 +1,6 @@
 <template>
   <div id="Login">
-    <v-container fluid elevation-10 mt-3>
+    <v-container elevation-10 mt-4>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-center" >
           <h1>Sign In</h1>
@@ -15,7 +15,7 @@
                 <v-text-field name="password" label="Password" id="password" type="password" solo required></v-text-field>
               </v-flex> 
               <v-flex class="text-xs-center" mt-5 @click="login">
-                <v-btn color="primary" type="submit">Sign In</v-btn>
+                <v-btn color="primary" type="submit" to="/app">Sign In</v-btn>
               </v-flex>
             </v-layout>
           </form>
@@ -54,7 +54,7 @@ const LOGIN_URL = 'http://localhost:5000/signup'
       ]),
       login: function() {
         this.SET_LOGGED_IN(true);
-        async
+        router.push({ path:'/app'})
         
       },
       clear: () => {
