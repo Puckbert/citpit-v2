@@ -8,12 +8,18 @@ export default new Vuex.Store({
     name: 'PicIt',
     isLoggedIn: false,
     user:{
-      
+
     }
   },
   mutations: {
     SET_LOGGED_IN: (state, payload) => {
-        state.isLoggedIn = payload;
+      state.isLoggedIn = payload;
+    },
+    SET_USER: (state, payload) => {
+      state.user = payload;
+    },
+    CLEAR_USER: (state) => {
+
     }
   },
   actons: {

@@ -56,12 +56,42 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'SET_LOGGED_IN'
+      'SET_LOGGED_IN',
+      'SET_USER'
     ]),
 
     login() {
-      console.log(email.value);
-      
+      const userData = {
+        email: email.value,
+        passwort: passwort.value
+      };
+      const settings = {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      }
+
+      fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      }).then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      }).then((response) => {
+        console.log(response.user);
+        //localStorage.token = result.token;
+        setTimeout(() => {
+          this.SET_USER(response.user);
+          this.$router.push('/app');
+        }, 1000);
+      })
+
 
     },
 

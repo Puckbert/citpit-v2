@@ -37,7 +37,7 @@
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile v-if="isLoggedIn" @click="logout" :to="{path: '/login'}">
+          <v-list-tile @click="logout" :to="{path: '/login'}">
             <v-list-tile-action>
               <v-icon>exit_to_app</v-icon>
             </v-list-tile-action>
@@ -64,9 +64,9 @@
         <v-spacer></v-spacer>
         <v-avatar
           color="grey lighten-4"
-        >   <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="">
+        >   <img :src="user.imageURL" alt="">
         </v-avatar>
-        <v-btn flat>Name</v-btn>
+        <v-btn flat>{{ user.email }}</v-btn>
       </v-toolbar>
       <v-content>
         <router-view />
@@ -88,17 +88,22 @@ export default {
   computed:{ ...mapState([
     'name',
     'isLoggedIn',
+    'user'
   ])
   } ,
   methods: {
     ...mapMutations([
-      'SET_LOGGED_IN'
+      'SET_LOGGED_IN',
+      'CLEAR_USER'
     ]),
     test: () => {
       console.log('Clickkkkkk!');
     },
     logout: function() {
-      this.SET_LOGGED_IN(false);  
+      user = {
+
+      }
+      this.CLEAR_USER();  
     }
   },
 
