@@ -4,7 +4,7 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink justify-center mt-5>
-            <v-card class="elevation-10 mt-4">
+            <!-- <v-card class="elevation-10 mt-4">
               <v-img @click="test" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" height="350px" width="350px">
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -14,8 +14,9 @@
                   </v-layout>
                 </v-container>
               </v-img>
-            </v-card>
-            <v-card class="elevation-10 mt-3">
+            </v-card> -->
+            <image-app/> 
+            <!-- <v-card class="elevation-10 mt-3">
               <v-img @click="test" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" height="350px">
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -25,7 +26,8 @@
                   </v-layout>
                 </v-container>
               </v-img>
-            </v-card>
+            </v-card> -->
+            <image-app/>         
           </v-flex>
         </v-layout>
       </v-container>
@@ -34,6 +36,8 @@
 </template>
 
 <script>
+import ImageApp from './ImageApp'
+
 export default {
     data: () => ({
     drawer: null,
@@ -41,9 +45,12 @@ export default {
   methods:{
       test: () => {
           console.log('Cloccjjjca');
-
       }
-  }
+  },
+  components: {
+    ImageApp
+  },
+  
 }
 </script>
 

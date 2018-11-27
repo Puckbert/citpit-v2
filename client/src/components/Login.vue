@@ -85,7 +85,7 @@ export default {
         }
       }).then((response) => {
         console.log(response.user);
-        //localStorage.token = result.token;
+        localStorage.token = result.token;
         setTimeout(() => {
           this.SET_USER(response.user);
           this.$router.push('/app');
