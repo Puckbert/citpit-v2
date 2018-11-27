@@ -11,10 +11,13 @@ const PORT = '5000';
 const db = require('../database/connection');
 const users = db.get('users');
 
+const middlewares = require('../auth/middlewares');
+
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(volleyball);
+app.use(middlewares.checkTokenSetUser);
 app.get('/', (req, res) => {
     res.json({
         message: 'Hello'

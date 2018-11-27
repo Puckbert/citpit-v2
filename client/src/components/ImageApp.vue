@@ -5,7 +5,7 @@
       <v-container fill-height fluid>
         <v-layout fill-height>
           <v-flex xs12 align-end flexbox>
-            <span class="headline">1. Bild</span>
+            <span class="headline">{{ imgtitle }}</span>
           </v-flex>
         </v-layout>
       </v-container>
@@ -17,16 +17,16 @@
 <script>
 export default {
   data: () =>({
-    imgsrc: "https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+    imgsrc: "",
+    imgtitle: ""
   }),
   methods:{
       test: () => {
-          console.log('Cloccjjjca');
-
+          console.log('HERE GOES THE FETCH ON CLICK!');
       }
   },
   mounted() {
-    console.log('MOUNTED!');
+    console.log("HERE GOES THE FETCH!");
   }
 }
 </script>

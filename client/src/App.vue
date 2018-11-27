@@ -63,10 +63,11 @@
         <v-toolbar-title>ABCDEFG</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-avatar
+          v-if="Object.keys(user).length != 0"
           color="grey lighten-4"
-        >   <img :src="user.imageURL" alt="">
+        >   <img alt="" :src="user.imageURL">
         </v-avatar>
-        <v-btn flat>{{ user.email }}</v-btn>
+        <v-btn flat v-if="Object.keys(user).length != 0">{{ user.email }}</v-btn>
       </v-toolbar>
       <v-content>
         <router-view />
@@ -89,21 +90,19 @@ export default {
     'name',
     'isLoggedIn',
     'user'
-  ])
+  ]),
   } ,
   methods: {
     ...mapMutations([
       'SET_LOGGED_IN',
-      'CLEAR_USER'
+      'CLEAR_USER',
+      'SET_USER'
     ]),
     test: () => {
       console.log('Clickkkkkk!');
     },
     logout: function() {
-      user = {
-
-      }
-      this.CLEAR_USER();  
+      this.CLEAR_USER(); 
     }
   },
 

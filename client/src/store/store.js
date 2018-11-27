@@ -19,7 +19,7 @@ export default new Vuex.Store({
       state.user = payload;
     },
     CLEAR_USER: (state) => {
-
+      Object.keys(state.user).forEach(k => delete state.user[k]);
     }
   },
   actons: {

@@ -65,13 +65,7 @@ export default {
         email: email.value,
         passwort: passwort.value
       };
-      const settings = {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-      }
+     
 
       fetch('http://localhost:5000/auth/login', {
         method: 'POST',
@@ -85,7 +79,7 @@ export default {
         }
       }).then((response) => {
         console.log(response.user);
-        localStorage.token = response.token;
+        localStorage.token = response.user.token;
         setTimeout(() => {
           this.SET_USER(response.user);
           this.$router.push('/app');
